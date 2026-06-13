@@ -1,0 +1,50 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.revenue.io/",
+  "name": "Revenue.io",
+  "url": "https://www.revenue.io/",
+  "description": "Revenue.io is a revenue intelligence platform offering real-time guidance, call analytics, rep performance tracking, conversation insights, and CRM activity synchronization via a REST API. Formerly known as RingDNA, it powers RevOps, Sales Engagement, and Conversation Intelligence for inside sales teams using Salesforce.",
+  "sameAs": [
+    "https://www.linkedin.com/company/revenueio",
+    "https://twitter.com/revenue_io"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Revenue.io API",
+    "description": "REST API for accessing real-time guidance, call analytics, rep performance data, conversation insights, and CRM activity synchronization within the Revenue.io revenue intelligence platform.",
+    "url": "https://support.revenue.io/"
+  },
+  "knowsAbout": [
+    "Revenue Intelligence",
+    "Sales Engagement",
+    "Conversation Intelligence",
+    "RevOps",
+    "Call Analytics",
+    "Real-Time Guidance",
+    "CRM Integration",
+    "Salesforce"
+  ],
+  "subjectOf": [
+    {
+      "@type": "WebPage",
+      "name": "Revenue.io Documentation",
+      "url": "https://support.revenue.io/"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Revenue.io Blog",
+      "url": "https://www.revenue.io/blog"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Revenue.io Pricing",
+      "url": "https://www.revenue.io/pricing"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Revenue.io Status Page",
+      "url": "https://status.revenue.io/"
+    }
+  ]
+}
