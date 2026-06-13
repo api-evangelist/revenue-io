@@ -1,0 +1,65 @@
+name: Revenue.io FinOps
+description: Financial operations guidance for managing Revenue.io subscription costs,
+  optimizing seat allocations across plan tiers, and accounting for Salesforce
+  dependency costs. Revenue.io uses custom-quoted, per-user monthly pricing with
+  annual contracts.
+url: https://www.revenue.io/pricing
+created: '2026-06-13'
+modified: '2026-06-13'
+costFactors:
+  - name: Per-User Subscription
+    description: Primary cost driver is per-user monthly licensing across Activate,
+      Engage, or Orchestrate tiers.
+    type: recurring
+    frequency: monthly
+    notes: Billed annually; custom pricing per contract. Estimated $75-$350/user/month
+      depending on tier.
+  - name: Salesforce CRM Licenses
+    description: Revenue.io requires Salesforce; organizations must budget for
+      Salesforce Sales Cloud or equivalent licenses in addition to Revenue.io fees.
+    type: dependency
+    estimatedCostRange: '$75-$300/user/month'
+    notes: This is a mandatory hidden cost for organizations not already on Salesforce.
+  - name: Minimum Seat Commitment
+    description: Revenue.io recommends 15 or more seats to maximize platform impact,
+      establishing a minimum effective contract floor.
+    type: commitment
+    minimumSeats: 15
+    notes: Smaller teams may negotiate exceptions but this is the stated minimum
+      for full value realization.
+  - name: Telecom and Carrier Fees
+    description: Outbound calling, SMS, and MMS usage may incur additional carrier
+      costs beyond the platform subscription fee.
+    type: usage
+    notes: Specific telecom rate schedules are not publicly disclosed; budget
+      separately for anticipated call and messaging volume.
+optimization:
+  - name: Right-Size Plan Tier
+    description: Evaluate whether all users require Orchestrate-tier AI features
+      or whether a mix of Activate and Engage seats can reduce per-seat costs for
+      lower-usage reps.
+    action: Audit feature utilization per rep role; downgrade seats not using
+      conversation intelligence or AI forecasting.
+  - name: Consolidate with Salesforce Contract
+    description: Negotiate bundled pricing when renewing or expanding Salesforce
+      contracts concurrently with Revenue.io renewals.
+    action: Align renewal dates and involve both vendors in joint commercial discussions.
+  - name: Monitor Seat Counts Actively
+    description: Revenue.io's per-seat model means unused seats are pure waste;
+      track active user counts and remove leavers promptly.
+    action: Establish quarterly seat audits tied to HR offboarding workflows.
+benchmarks:
+  - name: Median Annual Contract
+    value: '$59,460'
+    source: Vendr verified purchase data
+  - name: Small Team (5 SDRs) Annual TCO
+    value: '$10,700-$27,900'
+    notes: Includes Salesforce and telecom costs
+  - name: Mid Team (15 SDRs) Annual TCO
+    value: '$30,600-$83,700'
+    notes: Includes Salesforce and telecom costs
+references:
+  - name: Revenue.io Pricing Page
+    url: https://www.revenue.io/pricing
+  - name: Vendr Revenue.io Marketplace
+    url: https://www.vendr.com/marketplace/revenue-io

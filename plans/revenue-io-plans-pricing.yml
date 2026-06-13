@@ -1,0 +1,67 @@
+name: Revenue.io Plans and Pricing
+description: Revenue.io offers three tiered subscription plans for RevOps, Sales
+  Engagement, and Conversation Intelligence. All plans require a minimum of 15 seats
+  and Salesforce CRM. Pricing is custom-quoted per organization; no self-serve
+  pricing is published.
+url: https://www.revenue.io/pricing
+created: '2026-06-13'
+modified: '2026-06-13'
+plans:
+  - name: Activate
+    description: Power every rep with the number one Salesforce dialer, real-time
+      call coaching, and instant lead response. Entry-level plan focused on inbound
+      response and rep productivity.
+    url: https://www.revenue.io/pricing
+    pricingModel: per-user
+    pricingCycle: monthly
+    estimatedCostPerUserMonthly: '$75-$100'
+    custom: true
+    features:
+      - RingDNA Salesforce dialer
+      - Real-time call coaching
+      - Hot leads routing
+      - Call tracking and recording
+      - SMS and MMS messaging
+      - Voicemail drop
+      - Basic omnichannel communication
+      - Chrome extension
+  - name: Engage
+    description: Equip your team with guided cadences, AI-prioritized follow-up,
+      and consistent sales workflows. Builds on Activate with structured cadences
+      and pipeline acceleration.
+    url: https://www.revenue.io/pricing
+    pricingModel: per-user
+    pricingCycle: monthly
+    estimatedCostPerUserMonthly: '$120-$180'
+    custom: true
+    features:
+      - Everything in Activate
+      - Guided selling cadences
+      - Dynamic prioritization
+      - Email and SMS sequencing
+      - Deal management
+      - Outcome attribution
+      - AI-prioritized follow-up
+  - name: Orchestrate
+    description: Automate coaching, insights, and execution with AI-driven revenue
+      orchestration. Full enterprise plan with unified AI workflows for higher win rates.
+    url: https://www.revenue.io/pricing
+    pricingModel: per-user
+    pricingCycle: monthly
+    estimatedCostPerUserMonthly: '$200-$350'
+    custom: true
+    features:
+      - Everything in Engage
+      - AI deal queries and scoring
+      - Call summaries and transcription
+      - AI coaching automation
+      - Revenue forecasting
+      - Conversation intelligence
+      - Dedicated customer success manager
+notes:
+  - Revenue.io requires Salesforce CRM; add $75-$300/user/month for Salesforce
+    licenses.
+  - Most revenue teams start with 15 or more seats.
+  - All pricing is custom-quoted; contact sales for a personalized quote.
+  - Median annual contract is approximately $59,460/year based on verified purchase
+    data.

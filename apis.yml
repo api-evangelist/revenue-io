@@ -1,0 +1,69 @@
+aid: revenue-io
+name: Revenue.io
+description: Revenue.io is a revenue intelligence platform offering real-time guidance,
+  call analytics, rep performance tracking, conversation insights, and CRM activity
+  synchronization via a REST API. Formerly known as RingDNA, it powers RevOps, Sales
+  Engagement, and Conversation Intelligence for inside sales teams using Salesforce.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Revenue Intelligence
+  - Sales Engagement
+  - Conversation Intelligence
+  - RevOps
+  - Call Analytics
+  - Real-Time Guidance
+  - CRM Integration
+  - Salesforce
+apis:
+  - aid: revenue-io:revenue-io-api
+    name: Revenue.io API
+    description: REST API for accessing real-time guidance, call analytics, rep performance
+      data, conversation insights, and CRM activity synchronization within the Revenue.io
+      revenue intelligence platform.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.revenue.io/
+    baseURL: https://api.revenue.io
+    tags:
+      - Revenue Intelligence
+      - Call Analytics
+      - Conversation Intelligence
+      - Sales Engagement
+      - Real-Time Guidance
+    properties:
+      - type: Documentation
+        url: https://support.revenue.io/
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/plans/revenue-io-plans-pricing.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/rate-limits/revenue-io-rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/finops/revenue-io-finops.yml
+common:
+  - type: Website
+    url: https://www.revenue.io/
+  - type: Documentation
+    url: https://support.revenue.io/
+  - type: Blog
+    url: https://www.revenue.io/blog
+  - type: Pricing
+    url: https://www.revenue.io/pricing
+  - type: StatusPage
+    url: https://status.revenue.io/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/revenueio
+  - type: X
+    url: https://twitter.com/revenue_io
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/plans/revenue-io-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/rate-limits/revenue-io-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/finops/revenue-io-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
