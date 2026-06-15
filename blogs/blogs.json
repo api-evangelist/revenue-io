@@ -1,7 +1,7 @@
 {
   "provider": "revenue-io",
   "url": "https://www.revenue.io/blog",
-  "fetched": "2026-06-13",
+  "fetched": "2026-06-14T20:42:17Z",
   "posts": [
     {
       "title": "The 6 Best Siro Alternatives and Competitors in 2026",
@@ -75,5 +75,16 @@
       "date_published": "2026-05-18",
       "description": "Describes approach where reps prioritize buyer understanding and advisory credibility over immediate pitching."
     }
-  ]
+  ],
+  "repo": "revenue-io",
+  "feeds": [
+    {
+      "source": "https://support.revenue.io/",
+      "feed_url": "https://support.revenue.io/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0
 }
