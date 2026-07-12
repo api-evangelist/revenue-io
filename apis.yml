@@ -44,6 +44,10 @@ apis:
       - type: FinOps
         url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/finops/revenue-io-finops.yml
 common:
+  - type: TrustCenter
+    url: security/revenue-io-trust-center.yml
+  - type: DomainSecurity
+    url: security/revenue-io-domain-security.yml
   - type: Website
     url: https://www.revenue.io/
   - type: Documentation
