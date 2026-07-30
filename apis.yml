@@ -5,7 +5,19 @@ description: Revenue.io is a revenue intelligence platform offering real-time gu
   synchronization via a REST API. Formerly known as RingDNA, it powers RevOps, Sales
   Engagement, and Conversation Intelligence for inside sales teams using Salesforce.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Requires approval
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/revenue-io.png
 url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
