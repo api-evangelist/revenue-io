@@ -1,9 +1,13 @@
 aid: revenue-io
 name: Revenue.io
-description: Revenue.io is a revenue intelligence platform offering real-time guidance,
-  call analytics, rep performance tracking, conversation insights, and CRM activity
-  synchronization via a REST API. Formerly known as RingDNA, it powers RevOps, Sales
+description: Revenue.io is a Salesforce-native revenue orchestration platform offering
+  real-time guidance, call analytics, rep performance tracking, conversation insights,
+  and CRM activity synchronization. Formerly known as RingDNA, it powers RevOps, Sales
   Engagement, and Conversation Intelligence for inside sales teams using Salesforce.
+  It publishes no public REST API or OpenAPI; its documented programmable surface is
+  a set of Apex classes and Flow invocable actions in the RDNACadence managed-package
+  namespace, plus an OAuth-gated remote MCP server at https://app.ringdna.com/mcp
+  discovered from RFC 9728 protected-resource metadata on api.revenue.io.
 type: Index
 accessModel:
   pricing: enterprise
@@ -20,7 +24,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/revenue-io.png
 url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 tags:
   - Revenue Intelligence
@@ -34,9 +38,13 @@ tags:
 apis:
   - aid: revenue-io:revenue-io-api
     name: Revenue.io API
-    description: REST API for accessing real-time guidance, call analytics, rep performance
-      data, conversation insights, and CRM activity synchronization within the Revenue.io
-      revenue intelligence platform.
+    description: Revenue.io's programmable surface for guided selling, call analytics,
+      rep performance data, conversation insights, and CRM activity synchronization.
+      Exposed as RDNACadence Apex classes and Flow invocable actions inside the
+      customer's own Salesforce org (Create Quick Action, Complete Participant Action,
+      Skip Participant Action), authorized by a support-issued API Key and Secret bound
+      to the Salesforce Organization ID. A separate OAuth-gated remote MCP server runs
+      at https://app.ringdna.com/mcp. No OpenAPI is published.
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.revenue.io/
     baseURL: https://api.revenue.io
@@ -49,6 +57,8 @@ apis:
     properties:
       - type: Documentation
         url: https://support.revenue.io/
+      - type: APIReference
+        url: https://support.revenue.io/guided-selling/salesforce-administration/api-endpoints/
       - type: Plans
         url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/plans/revenue-io-plans-pricing.yml
       - type: RateLimits
@@ -80,6 +90,55 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/rate-limits/revenue-io-rate-limits.yml
   - type: FinOps
     url: https://raw.githubusercontent.com/api-evangelist/revenue-io/refs/heads/main/finops/revenue-io-finops.yml
+  - type: APIReference
+    url: https://support.revenue.io/guided-selling/salesforce-administration/api-endpoints/
+  - type: GettingStarted
+    url: https://support.revenue.io/getting-started/
+  - type: Support
+    url: https://support.revenue.io/
+  - type: GitHubOrganization
+    url: https://github.com/ringdna
+  - type: TermsOfService
+    url: https://www.revenue.io/msa
+  - type: PrivacyPolicy
+    url: https://www.revenue.io/privacy-policy
+  - type: Login
+    url: https://app.revenue.io/
+  - type: Compliance
+    url: https://www.revenue.io/security
+  - type: Deprecation
+    url: https://support.revenue.io/guided-selling/release-notes/guided-selling-winter-2025-release-v12/
+  - type: ChangeLog
+    url: https://support.revenue.io/guided-selling/release-notes/
+  - type: ChangeLog
+    url: changelog/revenue-io-changelog.yml
+  - type: MCPServer
+    url: mcp/revenue-io-mcp.yml
+  - type: WellKnown
+    url: well-known/revenue-io-well-known.yml
+  - type: LLMsTxt
+    url: llms/revenue-io-llms.txt
+  - type: Packages
+    url: packages/revenue-io-packages.yml
+  - type: Authentication
+    url: authentication/revenue-io-authentication.yml
+  - type: OAuthScopes
+    url: scopes/revenue-io-scopes.yml
+  - type: Conformance
+    url: conformance/revenue-io-conformance.yml
+  - type: ErrorCatalog
+    url: errors/revenue-io-error-codes.yml
+  - type: Lifecycle
+    url: lifecycle/revenue-io-lifecycle.yml
+  - type: Conventions
+    url: conventions/revenue-io-conventions.yml
+  - type: DataModel
+    url: data-model/revenue-io-data-model.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
