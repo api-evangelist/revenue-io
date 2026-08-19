@@ -1,0 +1,33 @@
+generated: '2026-08-13'
+method: probed
+source: https://api.revenue.io/.well-known/oauth-authorization-server
+note: >-
+  Derived from live RFC 8414 authorization-server metadata, not from an OpenAPI —
+  Revenue.io publishes no machine-readable spec. Revenue.io publishes no scopes
+  or permissions reference page in its knowledge center; the single scope below
+  is everything the provider advertises. A granular scope model, if one exists
+  behind the OAuth flow, is not published.
+schemes:
+  - name: mcp-oauth2
+    source: well-known/revenue-io-oauth-authorization-server.json
+    issuer: https://app.ringdna.com
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://app.ringdna.com/mcp/oauth/authorize
+        tokenUrl: https://app.ringdna.com/mcp/oauth/token
+        pkce: S256
+scopes:
+  - scope: mcp
+    description: >-
+      The only value in scopes_supported. Advertised by both the authorization
+      server metadata and the protected-resource metadata for
+      https://app.ringdna.com/mcp. Coarse-grained: one scope covers the entire
+      MCP tool surface, with no read/write or per-resource separation published.
+    flows: [authorizationCode]
+    sources:
+      - well-known/revenue-io-oauth-authorization-server.json
+      - well-known/revenue-io-oauth-protected-resource.json
+summary:
+  scope_count: 1
+  granularity: coarse
+  docs_page: null

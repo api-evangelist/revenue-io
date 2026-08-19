@@ -1,0 +1,79 @@
+generated: '2026-08-13'
+method: searched
+source: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/
+format: salesforce-status-code
+note: >-
+  NOT RFC 9457. Revenue.io publishes no HTTP API and therefore no
+  application/problem+json catalog. Its published error reference is the "Common
+  Salesforce Errors" section of the knowledge center — the Salesforce platform
+  status codes a customer actually sees when Revenue.io writes to their org — plus
+  the result-object envelope returned by the RDNACadence Apex/Flow API. Both are
+  captured verbatim below; nothing is invented.
+envelope:
+  surface: RDNACadence Apex classes and Flow invocable actions
+  source: https://support.revenue.io/guided-selling/salesforce-administration/api-endpoints/
+  shape:
+    success: boolean — whether the action completed
+    errorMessage: String — the failure message when success is false
+    errors: List — collected error messages
+    participantActionId: Id — the record the result refers to
+    successfulIds: List — ids that completed successfully
+  behavior_switch:
+    setting: GS_PublicSettings__c.logging_throwExceptions__c
+    'true': an exception is thrown on error
+    'false': the error message is returned inside the result object
+    note: >-
+      The error CHANNEL is a per-org custom setting, so an integrator cannot rely
+      on either shape without reading the customer's configuration first.
+errors:
+  - code: API_DISABLED_FOR_ORG
+    title: API access is disabled for this User
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/api-access-is-disabled-for-this-user/
+  - code: CANNOT_UPDATE_CONVERTED_LEAD
+    title: Cannot Update Converted Lead
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/cannot-update-converted-lead/
+  - code: INVALID_FIELD
+    title: 'Error updating record: Account: bad field names on insert/update call: AccountId'
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/error-updating-record-account-bad-field-names-on-insert-update-call-accountid/
+  - code: FIELD_CUSTOM_VALIDATION_EXCEPTION
+    title: Field Custom Validation Exception
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/field-custom-validation-exception/
+  - code: FIELD_INTEGRITY_EXCEPTION
+    title: Field Integrity Exception
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/field-integrity-exception/
+  - code: INSUFFICIENT_ACCESS_ON_CROSS_REFERENCE_ENTITY
+    title: Insufficient Access On Cross Reference Entity
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/insufficient-access-on-cross-reference-entity/
+  - code: INSUFFICIENT_ACCESS_OR_READONLY
+    title: Insufficient Access or Invalid Fields
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/insufficient-access-or-invalid-fields/
+  - code: INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST
+    title: Invalid Or Null For Restricted Picklist
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/invalid-or-null-for-restricted-picklist/
+  - code: INVALID_TYPE
+    title: '[INVALID_TYPE] sObject type is not supported'
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/invalid-type-sobject-type-is-not-supported/
+  - code: OAUTH_ACCESS_SCOPE
+    title: OAuth Access Scope
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/oauth-access-scope/
+  - code: REQUEST_LIMIT_EXCEEDED
+    title: Request Limit Exceeded
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/request-limit-exceeded/
+    note: >-
+      The rate-limit error. It is a Salesforce org API governor limit, not a
+      Revenue.io-published threshold — see rate-limits/revenue-io-rate-limits.yml.
+  - code: REQUIRED_FIELD_MISSING
+    title: Required Field Missing
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/required-field-missing/
+  - code: STRING_TOO_LONG
+    title: String Too Long
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/string-too-long/
+  - code: UNABLE_TO_LOCK_ROW
+    title: Unable To Lock Row
+    docs: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/unable-to-lock-row/
+related:
+  - https://support.revenue.io/integrations/salesforce/common-salesforce-errors/salesforce-connect-user-troubleshooting/
+summary:
+  error_count: 15
+  http_status_codes: false
+  problem_json: false

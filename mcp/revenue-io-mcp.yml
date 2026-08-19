@@ -1,0 +1,78 @@
+generated: '2026-08-13'
+method: probed
+status: published
+source: https://app.ringdna.com/.well-known/oauth-protected-resource/mcp
+name: Revenue.io (ringDNA) MCP Server
+description: >-
+  Revenue.io operates a live, remote Model Context Protocol server at
+  https://app.ringdna.com/mcp. It was discovered from the RFC 9728
+  protected-resource metadata served at
+  https://api.revenue.io/.well-known/oauth-protected-resource, which names
+  https://app.ringdna.com/mcp as the protected resource. The endpoint is real and
+  answering — an unauthenticated POST of jsonrpc tools/list returns HTTP 401 with
+  a WWW-Authenticate Bearer challenge carrying resource_metadata — so the tool
+  list and per-tool inputSchemas are OAuth-gated and could not be enumerated
+  anonymously. Revenue.io publishes no documentation for this server in its
+  knowledge center as of this probe; the surface is discoverable only from the
+  well-known metadata.
+ownership_note: >-
+  app.ringdna.com is a Revenue.io host. Revenue.io was formerly named ringDNA and
+  still ships RingDNA as its Communications Hub product; api.revenue.io and
+  app.ringdna.com return byte-identical OAuth metadata from the same backend, and
+  api.revenue.io/mcp returns the same 401 challenge pointing at the
+  app.ringdna.com resource metadata.
+deployment:
+  mode: remote
+  endpoint: https://app.ringdna.com/mcp
+  auth: oauth
+  verified: probed
+server:
+  name: revenue-io
+  transport: http
+  url: https://app.ringdna.com/mcp
+  aliases:
+    - https://api.revenue.io/mcp
+authorization:
+  spec: RFC 9728 protected resource metadata + RFC 8414 authorization server metadata
+  resource: https://app.ringdna.com/mcp
+  authorization_servers:
+    - https://app.ringdna.com
+  issuer: https://app.ringdna.com
+  authorization_endpoint: https://app.ringdna.com/mcp/oauth/authorize
+  token_endpoint: https://app.ringdna.com/mcp/oauth/token
+  registration_endpoint: https://app.ringdna.com/mcp/oauth/register
+  dynamic_client_registration: true
+  grant_types_supported:
+    - authorization_code
+    - refresh_token
+  code_challenge_methods_supported:
+    - S256
+  bearer_methods_supported:
+    - header
+  scopes_supported:
+    - mcp
+tools: []
+tools_note: >-
+  NOT ENUMERATED. tools/list is OAuth-gated (HTTP 401). Revenue.io publishes no
+  llms.txt tool list and no MCP documentation, so there is no non-authenticated
+  source for tool names, descriptions or inputSchemas. Enumerating them requires
+  an authenticated introspection with a ringDNA account token. No tools are
+  guessed here.
+x-evidence:
+  - fetched: '2026-08-13'
+    url: https://api.revenue.io/.well-known/oauth-protected-resource
+    http_status: 200
+    content_type: application/json
+  - fetched: '2026-08-13'
+    url: https://app.ringdna.com/mcp
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    www_authenticate: >-
+      Bearer resource_metadata="https://app.ringdna.com/.well-known/oauth-protected-resource/mcp"
+  - fetched: '2026-08-13'
+    url: https://api.revenue.io/mcp
+    method: POST
+    http_status: 401
+    www_authenticate: >-
+      Bearer resource_metadata="https://app.ringdna.com/.well-known/oauth-protected-resource/mcp"

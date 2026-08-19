@@ -1,0 +1,93 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://support.revenue.io/guided-selling/salesforce-administration/api-endpoints/
+  (complete-participant-action, skip-participant-action, create-quick-action),
+  https://support.revenue.io/guided-selling/salesforce-administration/installation-and-setup/setup-api-credentials/
+  and live probes of https://app.ringdna.com/mcp
+description: >-
+  Cross-cutting request/response semantics for Revenue.io. Two surfaces exist and
+  they share no conventions: (1) the RDNACadence Apex/Flow API inside the
+  customer's own Salesforce org, and (2) an OAuth-gated remote MCP endpoint.
+  Neither is an HTTP REST API, so most of the usual REST conventions have no
+  Revenue.io answer — that absence is recorded here rather than filled in.
+surfaces:
+  - id: apex-flow
+    name: RDNACadence Apex classes and Flow invocable actions
+    transport: in-org Salesforce Apex / Flow — no network call by the integrator
+    docs: https://support.revenue.io/guided-selling/salesforce-administration/api-endpoints/
+    operations:
+      - RDNACadence.QuickActionCreator.createQuickActions
+      - RDNACadence.CompleteParticipantAction.completeParticipantActions
+      - RDNACadence.SkipParticipantAction.skipParticipantActions
+  - id: mcp
+    name: Revenue.io remote MCP server
+    transport: JSON-RPC 2.0 over HTTP
+    endpoint: https://app.ringdna.com/mcp
+    docs: null
+    note: undocumented; discovered via RFC 9728 metadata
+authentication:
+  style: >-
+    apex-flow: no per-call credential — the caller is already inside the
+    customer's Salesforce org; a tenant-level API Key + API Secret (issued by
+    Revenue.io Support, bound to the Salesforce Organization ID) authorizes the
+    package to reach Revenue.io servers.
+    mcp: OAuth 2.1 authorization-code + PKCE bearer token in the Authorization header.
+  artifact: authentication/revenue-io-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    Revenue.io documents no idempotency key, no request-deduplication window and
+    no retry-safety contract on any surface. The Apex methods accept a list and
+    return per-id results, but a repeated call with the same participantActionIds
+    is not documented as a no-op. Do not treat these operations as idempotent.
+batching:
+  supported: true
+  style: list-in / list-out
+  note: >-
+    Every documented operation takes both a singular id and a plural list
+    (participantActionId | participantActionIds; participantId | participantIds)
+    and returns a parallel results list with successfulIds[] and errors[]. Partial
+    success is the normal outcome — the caller must inspect each result rather
+    than the call as a whole.
+pagination:
+  supported: false
+  note: no list/read operations are published; pagination does not arise.
+field_expansion:
+  supported: false
+metadata:
+  supported: true
+  style: JSON string in a configuration parameter
+  example: '{"task": {"Subject": "Test Subject 3"}}'
+  note: >-
+    Create Quick Action accepts a `configuration` JSON string carrying target
+    Salesforce field values (Subject, Description, Priority, Status).
+request_tracing:
+  request_id_header: null
+  note: no correlation/request-id convention is published.
+versioning:
+  style: managed-package-version
+  artifact: lifecycle/revenue-io-lifecycle.yml
+error_envelope:
+  shape:
+    success: boolean
+    errorMessage: String
+    errors: List
+    participantActionId: Id
+    successfulIds: List
+  switchable: true
+  switch: GS_PublicSettings__c.logging_throwExceptions__c
+  switch_note: >-
+    A per-org custom setting decides whether errors are THROWN as exceptions or
+    RETURNED inside the result object. An integrator cannot assume either shape
+    without reading the customer's configuration — the single most important
+    convention on this API.
+  artifact: errors/revenue-io-error-codes.yml
+rate_limit_signaling:
+  headers: []
+  note: >-
+    No Revenue.io rate-limit headers are published. The operative limit is the
+    customer's own Salesforce API governor limit, surfaced as the
+    REQUEST_LIMIT_EXCEEDED status code.
+  artifact: rate-limits/revenue-io-rate-limits.yml

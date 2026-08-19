@@ -5,7 +5,33 @@ description: Revenue.io does not publish specific API rate limit thresholds in i
   subject to change. Contact Revenue.io support for plan-specific rate limit details.
 url: https://support.revenue.io/
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://support.revenue.io/administration/managing-salesforce-configurations-and-settings/monitor-your-salesforce-api-usage/
+  and https://support.revenue.io/integrations/salesforce/common-salesforce-errors/request-limit-exceeded/
+limit_count: 0
+published_headers: []
+findings: >-
+  Re-searched 2026-08-13. Revenue.io publishes NO numeric rate limit of its own,
+  no window, no burst allowance, no X-RateLimit-*/RateLimit-*/Retry-After response
+  header and no exhaustion status code — because it publishes no HTTP API for
+  third parties to call. The only rate limit an integrator actually meets is the
+  customer's OWN Salesforce org API governor limit, which Revenue.io consumes on
+  their behalf: it documents how to monitor that consumption
+  ("Monitor Your Salesforce API Usage") and catalogs the resulting
+  REQUEST_LIMIT_EXCEEDED status code in its error reference. The MCP endpoint at
+  https://app.ringdna.com/mcp returned no rate-limit headers on the
+  unauthenticated 401 observed on 2026-08-13.
+references_checked:
+  - url: https://support.revenue.io/administration/managing-salesforce-configurations-and-settings/monitor-your-salesforce-api-usage/
+    finding: how to monitor Salesforce API usage; no Revenue.io threshold published
+  - url: https://support.revenue.io/integrations/salesforce/common-salesforce-errors/request-limit-exceeded/
+    finding: REQUEST_LIMIT_EXCEEDED — a Salesforce governor limit, not a Revenue.io limit
+  - url: https://app.ringdna.com/mcp
+    status: 401
+    finding: no rate-limit headers on the response
 rateLimits:
   - name: REST API
     description: General rate limits applied to REST API requests for guided selling,

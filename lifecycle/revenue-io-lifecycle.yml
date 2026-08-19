@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://support.revenue.io/guided-selling/release-notes/ ,
+  https://support.revenue.io/getting-started/installing-the-revenueio-revenue-intelligence-package/revenue-intelligence-package-changelog/
+  and https://status.revenue.io/
+versioning:
+  scheme: managed-package-version
+  description: >-
+    Revenue.io versions its Salesforce managed packages, not an HTTP API. Guided
+    Selling is versioned by a named seasonal major release (V9, V10, V11, V12)
+    with a package build string; the Revenue Intelligence package is versioned
+    on a separate 1.x line. There is no URI-path, header or date-based API
+    version because there is no public HTTP API.
+  current:
+    guided_selling: 'V12 (Winter 2026) — package build 11.30.8'
+    revenue_intelligence_package: '1.120'
+  docs: https://support.revenue.io/guided-selling/release-notes/
+deprecation:
+  policy_url: https://support.revenue.io/guided-selling/release-notes/guided-selling-winter-2025-release-v12/
+  policy_published: true
+  sunset_header: false
+  description: >-
+    Revenue.io ships no HTTP Sunset/Deprecation headers (RFC 8594) — there is no
+    HTTP API to carry them. It does publish deprecation in the release notes as
+    named, actionable removals with required upgrade steps, which is the
+    Salesforce-native equivalent: V12 removed the Action object from the data
+    model ("Simplified Sequence Action Model — Removes complexity by eliminating
+    the Action object") and lists eight Visualforce/Lightning tabs an admin must
+    delete by hand, each labelled "(Deprecated)".
+  deprecated_components:
+    - {api_name: cadence_actions, label: Actions (Deprecated), kind: Visualforce tab}
+    - {api_name: cadences, label: Sequence (Deprecated), kind: Visualforce tab}
+    - {api_name: sequence_setting, label: Sequence Setting (Deprecated), kind: Visualforce tab}
+    - {api_name: target_list, label: Engage (Deprecated), kind: Visualforce tab}
+    - {api_name: cadence_actions_classic, label: Actions (Deprecated), kind: Lightning component tab}
+    - {api_name: cadence_classic, label: Sequence (Deprecated), kind: Lightning component tab}
+    - {api_name: sequence_setting_classic, label: Sequence Setting (Deprecated), kind: Lightning component tab}
+    - {api_name: target_list_classic, label: Engage (Deprecated), kind: Lightning component tab}
+  migration:
+    required: true
+    from: Guided Selling v11 or earlier
+    to: Guided Selling v12+
+    estimated_effort: '~45 minutes, System Admin with a Guided Selling license'
+    batch_job: ActionMigrationBatch
+    verification_query: >-
+      SELECT id, RDNACadence__ActivationType__c, RDNACadence__Type__c FROM
+      RDNACadence__CadenceAction__c
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime commitment is published. Terms live in the Master
+    Service Agreement at https://www.revenue.io/msa.
+status_page: https://status.revenue.io/
+status_page_note: >-
+  Live and returning 200, but it exposes no machine-readable feed — /api/v2/summary.json,
+  /api/v2/status.json and /history.rss all 404, so uptime cannot be consumed
+  programmatically.
+deprecated_operations: []
+deprecated_operations_note: none derivable — no OpenAPI in this repo.

@@ -1,0 +1,115 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://support.revenue.io/guided-selling/release-notes/ and
+  https://support.revenue.io/getting-started/installing-the-revenueio-revenue-intelligence-package/revenue-intelligence-package-changelog/
+scheme: managed-package-version
+description: >-
+  Revenue.io maintains two separate public change streams, both in the knowledge
+  center, both dated. Neither is an HTTP API changelog — they track the Salesforce
+  managed packages. Recent window only; the live pages are the source of truth.
+streams:
+  - name: Guided Selling release notes
+    url: https://support.revenue.io/guided-selling/release-notes/
+    cadence: seasonal major releases
+  - name: Revenue Intelligence package changelog
+    url: >-
+      https://support.revenue.io/getting-started/installing-the-revenueio-revenue-intelligence-package/revenue-intelligence-package-changelog/
+    cadence: incremental package versions, dated to the day
+current:
+  guided_selling: 'V12 (Winter 2026), package build 11.30.8'
+  revenue_intelligence_package: '1.120'
+entries:
+  - stream: guided-selling
+    version: V12
+    label: Winter 2026 Release
+    date: null
+    date_note: Revenue.io labels the release by season, not by an ISO date.
+    url: https://support.revenue.io/guided-selling/release-notes/guided-selling-winter-2025-release-v12/
+    breaking: true
+    additions:
+      - 'API: Create Quick Actions — programmatically trigger one-off actions via Flow or Apex'
+      - 'API: Skip or Perform Actions — supports automation workflows that advance participants'
+      - Upcoming Actions on Engage
+      - Reschedule to Any Date
+      - Track Action Rescheduling
+      - Create Email & SMS Quick Actions
+    breaking_changes:
+      - >-
+        Simplified Sequence Action Model — the Action object is eliminated;
+        upgrade from v11 or earlier requires a System Admin migration (~45 min),
+        deletion of eight deprecated Visualforce/Lightning tabs, and completion of
+        the ActionMigrationBatch Apex job.
+    highlights: >-
+      This is the release that created Revenue.io's programmable surface: the
+      three documented API endpoints all shipped here.
+  - stream: guided-selling
+    version: V11
+    label: Summer 2025 Release
+    date: null
+    url: https://support.revenue.io/guided-selling/release-notes/guided-selling-summer-2025-release-v11/
+    breaking: false
+    highlights: laid the just-in-time foundation V12 builds on
+  - stream: guided-selling
+    version: V10
+    label: Summer 2024 Release
+    date: null
+    url: https://support.revenue.io/guided-selling/release-notes/guided-selling-summer-2024-release-v10/
+  - stream: guided-selling
+    version: V9
+    label: March 2024 Release
+    date: null
+    url: https://support.revenue.io/guided-selling/release-notes/guided-selling-march-2024-release-v9/
+  - stream: revenue-intelligence-package
+    version: '1.120'
+    date: '2025-10-06'
+    breaking: false
+    additions:
+      - Account object custom fields — Revenue Account, linking to app Account record pages
+  - stream: revenue-intelligence-package
+    version: '1.119'
+    date: '2025-08-26'
+    breaking: false
+    additions:
+      - Opportunity object custom fields — Deal Health, Revenue Opportunity
+  - stream: revenue-intelligence-package
+    version: '1.116'
+    date: '2025-07-01'
+    breaking: false
+    additions:
+      - >-
+        RingDNA Agent Permission Set — added missing Call Flow and Call Flow Step
+        object permissions
+  - stream: revenue-intelligence-package
+    version: '1.115'
+    date: '2025-06-16'
+    breaking: false
+    dependency: required for upgrading to Guided Selling V11+
+    additions:
+      - >-
+        Conversation object email-logging fields — Email Opened Date, Email
+        Opened, Email Replied Date, Email Replied, Email Sent Date, Email Sent,
+        Undeliverable, Subject, Coaching Feedback, Conversation Summary
+  - stream: revenue-intelligence-package
+    version: '1.110'
+    date: '2024-07-15'
+    breaking: false
+    additions:
+      - >-
+        Conversation object email-outcome fields — Automatic Reply, Email Links
+        Clicked, Email Replies, Email Message ID, Email Thread ID, Follow-Up Email
+  - stream: revenue-intelligence-package
+    version: '1.103'
+    date: '2023-11-20'
+    breaking: false
+    additions:
+      - >-
+        Generative-AI fields on the Conversation object — Coaching Feedback,
+        Conversation Summary, Follow-Up Email, Transferred From Name/Type
+summary:
+  entry_count: 10
+  dated_entries: 6
+  machine_readable_feed: false
+  feed_note: >-
+    No RSS/Atom/JSON feed is published for either stream; both are HTML pages in
+    the Hugo-generated knowledge center.

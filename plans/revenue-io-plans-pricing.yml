@@ -5,7 +5,21 @@ description: Revenue.io offers three tiered subscription plans for RevOps, Sales
   pricing is published.
 url: https://www.revenue.io/pricing
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://www.revenue.io/pricing
+plan_count: 3
+published_prices: false
+pricing_note: >-
+  Re-verified 2026-08-13 against https://www.revenue.io/pricing. The three tier
+  names and their positioning below match the live page. NO dollar amount is
+  published anywhere on it — Revenue.io states pricing is "seat-based and scoped
+  to your team and plan" with a custom quote built during a demo call, and points
+  every tier at "Book a demo" or (888) 815-0802. The
+  estimatedCostPerUserMonthly values below therefore carry
+  estimate_source: third-party and are NOT Revenue.io-published figures; they are
+  retained as-is from the 2026-06-13 pass and must never be quoted as list price.
 plans:
   - name: Activate
     description: Power every rep with the number one Salesforce dialer, real-time
@@ -15,6 +29,8 @@ plans:
     pricingModel: per-user
     pricingCycle: monthly
     estimatedCostPerUserMonthly: '$75-$100'
+    estimate_source: third-party
+    published_price: false
     custom: true
     features:
       - RingDNA Salesforce dialer
@@ -33,6 +49,8 @@ plans:
     pricingModel: per-user
     pricingCycle: monthly
     estimatedCostPerUserMonthly: '$120-$180'
+    estimate_source: third-party
+    published_price: false
     custom: true
     features:
       - Everything in Activate
@@ -49,6 +67,8 @@ plans:
     pricingModel: per-user
     pricingCycle: monthly
     estimatedCostPerUserMonthly: '$200-$350'
+    estimate_source: third-party
+    published_price: false
     custom: true
     features:
       - Everything in Engage

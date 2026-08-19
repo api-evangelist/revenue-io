@@ -1,0 +1,172 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://support.revenue.io/guided-selling/reference-architecture/object-architecture/
+  and https://support.revenue.io/getting-started/installing-the-revenueio-revenue-intelligence-package/conversation-object-fields/
+description: >-
+  Revenue.io's data model is not behind an API — it IS Salesforce. The managed
+  packages install custom objects into the customer's own org, and Revenue.io
+  publishes their API names, relationships and field sets. Captured verbatim from
+  the provider's Object Architecture reference and Conversation Object Fields
+  article; no schema was inferred, because there is no OpenAPI in this repo to
+  derive one from.
+namespaces:
+  RDNACadence: Guided Selling managed package
+  ringdna: Revenue Intelligence package (ringDNA for Salesforce)
+entities:
+  - name: Sequence
+    api_name: RDNACadence__Cadence__c
+    namespace: RDNACadence
+    description: Container object defining the sequence template, rules, and configuration
+    primary_use: Sequence definition and management
+    docs: https://support.revenue.io/guided-selling/reference-architecture/object-architecture/sequence/
+  - name: Action
+    api_name: RDNACadence__CadenceAction__c
+    namespace: RDNACadence
+    description: Template objects defining individual steps within a sequence
+    primary_use: Action configuration and templates
+    docs: https://support.revenue.io/guided-selling/reference-architecture/object-architecture/action/
+    lifecycle: >-
+      Being eliminated by the Guided Selling V12 "Simplified Sequence Action
+      Model" — see lifecycle/revenue-io-lifecycle.yml.
+    action_types: [Call, SMS, Email, Task]
+  - name: Participant
+    api_name: Lead | Contact
+    namespace: standard-salesforce
+    description: Standard Salesforce Lead or Contact objects
+    primary_use: Target records for sequence enrollment
+  - name: Sequence Association
+    api_name: RDNACadence__Sequence_Association__c
+    namespace: RDNACadence
+    description: Enrollment record linking sequences to participants
+    primary_use: Enrollment tracking and metadata
+    docs: https://support.revenue.io/guided-selling/reference-architecture/object-architecture/sequence-association/
+  - name: Participant Action
+    api_name: RDNACadence__Sequence_Action__c
+    namespace: RDNACadence
+    description: Instance records of actions for specific participants
+    primary_use: Individual action execution tracking
+    docs: https://support.revenue.io/guided-selling/reference-architecture/object-architecture/participant-action/
+    related_docs:
+      - https://support.revenue.io/guided-selling/reference-architecture/object-architecture/participant-action/participant-action-status-glossary/
+      - https://support.revenue.io/guided-selling/reference-architecture/object-architecture/participant-action/system-deferral-reasons/
+    note: >-
+      The object the three published API operations act on — createQuickActions
+      creates it, completeParticipantActions and skipParticipantActions transition it.
+  - name: Conversation
+    api_name: ringdna__Conversation__c
+    namespace: ringdna
+    description: Outcome records capturing interaction results
+    primary_use: Activity logging and reporting
+    docs: https://support.revenue.io/getting-started/installing-the-revenueio-revenue-intelligence-package/conversation-object-fields/
+    field_groups:
+      - name: Basic Telephony
+        fields:
+          - 'Call Connected?'
+          - 'Call Hour Of Day (Agent)'
+          - 'Call Object Identifier'
+          - 'Call Status'
+          - 'Direction'
+          - 'Disposition'
+          - 'Duration (Minutes)'
+          - 'Duration (Seconds)'
+          - 'Ended by Agent'
+          - 'From Number'
+          - 'Hour Of Day (Local)'
+          - 'Initiating Record ID'
+          - 'Legacy Call Id'
+          - 'No Answer Number Used'
+          - 'Recording'
+          - 'Recording Type'
+          - 'Recording URL'
+          - 'Rating'
+          - 'Start Time'
+          - 'To Number'
+          - 'Wrap up Time'
+      - name: Inbound Routing
+        fields:
+          - 'Abandoned Call'
+          - 'Call Flow'
+          - 'Queue'
+          - 'Queue Hold Time'
+          - 'Total Queue Hold Time'
+          - 'Voicemail'
+      - name: Outbound
+        fields:
+          - 'Automated Voicemail?'
+          - 'Automated Voicemail Link'
+          - 'Automated Voicemail Used'
+          - 'Called Back?'
+          - 'Local Presence?'
+          - 'Local Presence Number'
+      - name: Coaching
+        fields:
+          - 'Supervisor Notes'
+    field_note: >-
+      Field list is as published for package version 1.120; further groups
+      (Meeting, AI/generative) exist on the source page. Enumerated groups above
+      are copied verbatim, not summarised.
+  - name: Call Flow
+    api_name: null
+    namespace: ringdna
+    description: >-
+      Inbound routing definition referenced by Conversation.Call Flow. Named in
+      the 1.116 permission-set changelog entry as "Call Flow" and "Call Flow Step"
+      objects; Revenue.io does not publish their API names.
+    docs: https://support.revenue.io/ringdna/managing-call-flows/
+relationships:
+  - from: Sequence
+    to: Action
+    type: has_many
+    via: sequence membership
+    note: 'a Sequence contains its Sequence Actions (Call, SMS, Email, Task)'
+  - from: Sequence
+    to: Sequence Association
+    type: has_many
+    via: creation on enrollment
+  - from: Sequence Association
+    to: Participant
+    type: belongs_to
+    via: Lead/Contact reference
+  - from: Sequence Association
+    to: Participant Action
+    type: has_many
+  - from: Action
+    to: Participant Action
+    type: has_many
+    via: templates for
+  - from: Participant
+    to: Participant Action
+    type: has_many
+  - from: Participant Action
+    to: Conversation
+    type: has_one
+    via: creation on completion
+  - from: Conversation
+    to: Call Flow
+    type: belongs_to
+    via: Call Flow lookup
+  - from: Conversation
+    to: Conversation
+    type: has_one
+    via: Transferred From
+    note: self-reference — the conversation that preceded a cold/warm transfer
+  - from: Conversation
+    to: Account
+    type: belongs_to
+    via: Revenue Account
+    note: added in Revenue Intelligence package 1.120
+  - from: Conversation
+    to: Opportunity
+    type: belongs_to
+    via: Revenue Opportunity
+    note: added in Revenue Intelligence package 1.119
+render:
+  provider_diagram: >-
+    The Object Architecture page publishes a Mermaid flowchart of the same graph —
+    Sequence -> Sequence Actions / Sequence Association -> Participant ->
+    Participant Action -> Conversation.
+summary:
+  entity_count: 7
+  relationship_count: 11
+  derived_from_openapi: false

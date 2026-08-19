@@ -1,0 +1,96 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://support.revenue.io/getting-started/installing-the-revenueio-revenue-intelligence-package/revenue-intelligence-package-changelog/
+  and https://support.revenue.io/guided-selling/release-notes/guided-selling-winter-2025-release-v12/
+  plus unauthenticated registry lookups against npm, PyPI and the GitHub API
+note: >-
+  Revenue.io ships NO first-party API client library on any public language
+  registry. It is a 100% Salesforce-native vendor: its distribution channel is
+  the Salesforce managed package (AppExchange / installPackage.apexp), and its
+  "API" is a set of Apex classes and Flow invocable actions inside the
+  RDNACadence namespace rather than an HTTP SDK. The managed packages below are
+  the real, first-party, versioned distribution units, so they are recorded here
+  with the versions and dates Revenue.io itself publishes. Registry probes are
+  recorded as honest misses: npm 404 for @ringdna/client, ringdna, revenue-io and
+  @revenue-io/sdk; PyPI 404 for revenue-io, ringdna and revenueio.
+packages:
+  - language: apex
+    registry: salesforce-managed-package
+    name: Revenue.io Revenue Intelligence Package (ringDNA for Salesforce)
+    namespace: ringdna
+    url: >-
+      https://support.revenue.io/getting-started/installing-the-revenueio-revenue-intelligence-package/revenue-intelligence-package-changelog/
+    install: Install the managed package into the Salesforce org from the AppExchange listing
+    official: true
+    version: '1.120'
+    published: '2025-10-06'
+    version_source: >-
+      Revenue Intelligence Package Changelog — "1.120 (10/06/2025) - Latest Package"
+    note: >-
+      Provides the ringdna__Conversation__c object and its documented field set;
+      a version dependency for Guided Selling v11 and later.
+  - language: apex
+    registry: salesforce-managed-package
+    name: Guided Selling by Revenue.io
+    namespace: RDNACadence
+    url: >-
+      https://support.revenue.io/guided-selling/release-notes/guided-selling-winter-2025-release-v12/
+    install: https://login.salesforce.com/packaging/installPackage.apexp?p0=04tIS0000011bRqYAI
+    install_sandbox: https://test.salesforce.com/packaging/installPackage.apexp?p0=04tIS0000011bRqYAI
+    official: true
+    version: 11.30.8
+    published: null
+    version_source: >-
+      Winter 2026 Release (V12) release note — "Upgrade to version 11.30.8"
+    note: >-
+      Carries the RDNACadence Apex API surface (QuickActionCreator,
+      CompleteParticipantAction, SkipParticipantAction) and the Flow invocable
+      actions. Revenue.io publishes the version string but no release date for
+      the package build, so published is null rather than guessed; the release
+      itself is labelled Winter 2026.
+  - language: apex
+    registry: salesforce-managed-package
+    name: Revenue.io Advanced Solutions Package
+    url: >-
+      https://support.revenue.io/getting-started/installing-the-revenueio-advanced-solutions-package/
+    official: true
+    version: null
+    published: null
+    note: >-
+      A separately installed managed package documented in the knowledge center,
+      but Revenue.io publishes no version number or release date for it — checked,
+      nothing to record.
+  - language: typescript
+    registry: npm
+    name: '@ringdna/client'
+    url: https://github.com/ringdna/api-client
+    official: true
+    published_to_registry: false
+    version: null
+    published: null
+    note: >-
+      First-party (github.com/ringdna org) hooks-based generic HTTP client
+      library, licensed UNLICENSED and never published — registry.npmjs.org
+      returns 404 for @ringdna/client. Source-only; last push 2023-07-18. It is a
+      generic request/cache library, not a client for the Revenue.io API.
+registry_probes:
+  - registry: npm
+    queries: ['@ringdna/client', ringdna, revenue-io, '@revenue-io/sdk', 'search: ringdna', 'search: revenue.io']
+    result: no first-party package (404 / 0 search hits)
+  - registry: pypi
+    queries: [revenue-io, ringdna, revenueio]
+    result: 404
+  - registry: rubygems
+    result: not probed — no Ruby surface documented
+  - registry: github
+    org: https://github.com/ringdna
+    result: >-
+      org exists and is first-party (8 public repos) but holds only forks
+      (jitsi, metabase, n8n, aws-codedeploy-agent, airflow-prometheus-exporter)
+      and internal libraries (api-client, json-logic-java, emr-demo). No SDK.
+summary:
+  package_count: 4
+  official_count: 4
+  registry_published_count: 0
+  sdk_client_library: false

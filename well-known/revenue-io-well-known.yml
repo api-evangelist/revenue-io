@@ -1,0 +1,149 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every Revenue.io host in apis.yml plus the
+  app.ringdna.com application host named by the OAuth metadata
+note: >-
+  Revenue.io serves real RFC 8414 authorization-server metadata and RFC 9728
+  protected-resource metadata from api.revenue.io. Both documents point at
+  https://app.ringdna.com — ringDNA is Revenue.io's former company name and the
+  name of its current Communications Hub product, and the same Play-framework
+  backend answers on both api.revenue.io and app.ringdna.com with byte-identical
+  metadata, so the app.ringdna.com host is Revenue.io's own. The protected
+  resource named by that metadata is an MCP server (see mcp/revenue-io-mcp.yml).
+  support.revenue.io is a Hugo static site whose catch-all answers HTTP 200 with
+  an HTML shell for EVERY /.well-known/* path — those are soft-404s, recorded
+  below as misses, not as documents.
+hosts:
+  - host: https://api.revenue.io
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: revenue-io-oauth-authorization-server.json
+        document: true
+        spec: RFC 8414
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        content_type: application/json
+        file: revenue-io-oauth-protected-resource.json
+        document: true
+        spec: RFC 9728
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        document: false
+      - path: /.well-known/agent.json
+        status: 404
+        document: false
+  - host: https://app.ringdna.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        document: true
+        spec: RFC 8414
+        note: byte-identical to the api.revenue.io copy saved above
+      - path: /.well-known/oauth-protected-resource/mcp
+        status: 200
+        content_type: application/json
+        document: true
+        spec: RFC 9728
+        note: >-
+          the exact resource_metadata URL advertised in the WWW-Authenticate
+          header returned by POST https://app.ringdna.com/mcp
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        document: false
+      - path: /.well-known/agent.json
+        status: 404
+        document: false
+  - host: https://www.revenue.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        document: false
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        document: false
+      - path: /.well-known/agent.json
+        status: 404
+        document: false
+  - host: https://support.revenue.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        document: false
+        note: soft-404 — Hugo catch-all returns an HTML shell, not a document
+      - path: /.well-known/openid-configuration
+        status: 200
+        document: false
+        note: soft-404 — HTML shell
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        document: false
+        note: soft-404 — HTML shell
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        document: false
+        note: soft-404 — HTML shell
+      - path: /.well-known/api-catalog
+        status: 200
+        document: false
+        note: soft-404 — HTML shell
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        document: false
+        note: soft-404 — HTML shell
+      - path: /.well-known/agent-card.json
+        status: 200
+        document: false
+        note: soft-404 — HTML shell; NOT an agent card
+      - path: /.well-known/agent.json
+        status: 200
+        document: false
+        note: soft-404 — HTML shell; NOT an agent card
+summary:
+  paths_probed: 34
+  real_documents: 4
+  security_txt: false
+  api_catalog: false
+  agent_card: false
+  oauth_metadata: true

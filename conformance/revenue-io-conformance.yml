@@ -1,0 +1,99 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  live probes of https://api.revenue.io/.well-known/*, POST https://app.ringdna.com/mcp,
+  plus https://www.revenue.io/security and the Revenue.io knowledge center
+standards:
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    evidence: >-
+      https://api.revenue.io/.well-known/oauth-authorization-server returns 200
+      JSON with issuer, authorization_endpoint, token_endpoint,
+      registration_endpoint, response_types_supported, grant_types_supported,
+      token_endpoint_auth_methods_supported, code_challenge_methods_supported and
+      scopes_supported.
+  - id: rfc9728-oauth-protected-resource-metadata
+    conforms: true
+    evidence: >-
+      https://api.revenue.io/.well-known/oauth-protected-resource and
+      https://app.ringdna.com/.well-known/oauth-protected-resource/mcp return 200
+      JSON with resource, authorization_servers, bearer_methods_supported and
+      scopes_supported; the 401 from the MCP endpoint carries a
+      WWW-Authenticate Bearer challenge with resource_metadata, as the RFC
+      prescribes.
+  - id: rfc7591-dynamic-client-registration
+    conforms: true
+    evidence: >-
+      registration_endpoint https://app.ringdna.com/mcp/oauth/register advertised
+      in the authorization-server metadata.
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: 'code_challenge_methods_supported: ["S256"]'
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      authorization_code + refresh_token grants, public client
+      (token_endpoint_auth_methods_supported ["none"]).
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Streamable-HTTP MCP endpoint at https://app.ringdna.com/mcp answering
+      JSON-RPC POSTs with a spec-shaped OAuth challenge. Protocol version not
+      observable without a token.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 on every Revenue.io host.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on api.revenue.io, www.revenue.io and app.ringdna.com.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      No HTTP API is published. The documented API surface is Apex/Flow inside
+      Salesforce and returns a result object (success, errorMessage, errors[]),
+      not application/problem+json.
+  - id: openapi
+    conforms: false
+    evidence: >-
+      No OpenAPI/Swagger found on api.revenue.io, app.ringdna.com,
+      www.revenue.io or support.revenue.io (all candidate paths 404).
+  - id: asyncapi
+    conforms: false
+    evidence: no event/streaming spec published; no webhook catalog documented.
+  - id: a2a
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json return 404 on every
+      Revenue.io-controlled host.
+compliance:
+  published: true
+  source: https://www.revenue.io/security
+  programs:
+    - id: soc2
+      name: SOC 2
+      claim: >-
+        "SOC II compliant and is subject to rigorous, consistent security testing"
+    - id: hipaa
+      name: HIPAA
+      claim: >-
+        "meets core security requirements for the HIPAA security rule"; operates as
+        a Business Associate with encryption and access controls
+    - id: gdpr
+      name: GDPR
+      claim: administrative safeguards, access controls, data backup and disaster recovery
+    - id: ccpa-cpra
+      name: CCPA / CPRA
+      claim: tooling to manage and delete customer data
+    - id: casa-tier-2
+      name: Google CASA Tier 2
+      claim: >-
+        "passed a rigorous independent security assessment validating it can
+        safely and securely handle Google user data"
+    - id: tcpa
+      name: TCPA
+      claim: SMS and call blocklists
+  note: >-
+    Certifications are asserted on the marketing security page. Revenue.io
+    publishes no trust portal, no audit-report request flow, no security contact
+    and no vulnerability-disclosure policy — all of /.well-known/security.txt,
+    /responsible-disclosure and a bug-bounty listing came back empty.
