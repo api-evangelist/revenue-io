@@ -9,6 +9,17 @@ description: Revenue.io is a Salesforce-native revenue orchestration platform of
   namespace, plus an OAuth-gated remote MCP server at https://app.ringdna.com/mcp
   discovered from RFC 9728 protected-resource metadata on api.revenue.io.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: approval
