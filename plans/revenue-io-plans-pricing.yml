@@ -85,3 +85,27 @@ notes:
   - All pricing is custom-quoted; contact sales for a personalized quote.
   - Median annual contract is approximately $59,460/year based on verified purchase
     data.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Activate
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Engage
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Orchestrate
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
