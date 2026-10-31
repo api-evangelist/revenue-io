@@ -64,18 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Revenue.io is a revenue intelligence platform (formerly RingDNA) offering real-time guidance, call analytics, rep performance tracking, conversation insights, and CRM activity synchronization. It powers RevOps, Sales Engagement, and Conversation Intelligence for inside sales teams built on Salesforce.
+Revenue.io is a Salesforce-native revenue orchestration platform offering real-time guidance, call analytics, rep performance tracking, conversation insights, and CRM activity synchronization. Formerly known as RingDNA, it powers RevOps, Sales Engagement, and Conversation Intelligence for inside sales teams using Salesforce. It publishes no public REST API or OpenAPI; its documented programmable surface is a set of Apex classes and Flow invocable actions in the RDNACadence managed-package namespace, plus an OAuth-gated remote MCP server at https://app.ringdna.com/mcp discovered from RFC 9728 protected-resource metadata on api.revenue.io.
 
-## Resources
+**Areas:** Revenue Intelligence · Sales Engagement · Conversation Intelligence · Revenue Operations · Call Analytics · Real-Time Guidance · CRM Integration · Salesforce
 
-- **Website**: https://www.revenue.io/
-- **Documentation**: https://support.revenue.io/
-- **Blog**: https://www.revenue.io/blog
-- **Pricing**: https://www.revenue.io/pricing
-- **Status Page**: https://status.revenue.io/
-- **LinkedIn**: https://www.linkedin.com/company/revenueio
-- **X (Twitter)**: https://twitter.com/revenue_io
+## Revenue.io on APIs.io
 
-## APIs.json
+Everything profiled for Revenue.io is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/revenue-io/](https://apis.io/providers/revenue-io/)** — or go straight to one of the APIs or properties below.
 
-This repository contains an APIs.json 0.19 profile for Revenue.io maintained by [API Evangelist](https://apievangelist.com).
+### APIs (1)
+
+- [Revenue.io API](https://apis.io/apis/revenue-io/revenue-io-api/) — Revenue.io's programmable surface for guided selling, call analytics, rep performance data, conversation insights, and CRM activity synchronization. Exposed…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [revenue-io](https://apis.io/servers/revenue-io/revenue-io/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Revenue Io Authentication](https://apis.io/security/revenue-io/revenue-io-authentication/)
+- [Revenue Io Domain Security](https://apis.io/security/revenue-io/revenue-io-domain-security/)
+- [Revenue Io Trust Center](https://apis.io/security/revenue-io/revenue-io-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Revenue Io Scopes](https://apis.io/scopes/revenue-io/revenue-io-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Revenue Io Plans Pricing](https://apis.io/plans/revenue-io/revenue-io-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Revenue Io Rate Limits](https://apis.io/rate-limits/revenue-io/revenue-io-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Revenue Io Finops](https://apis.io/finops/revenue-io/revenue-io-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.revenue.io/)
+- [Documentation](https://support.revenue.io/)
+- [Getting started](https://support.revenue.io/getting-started/)
+- [API reference](https://support.revenue.io/guided-selling/salesforce-administration/api-endpoints/)
+- [Pricing](https://www.revenue.io/pricing)
+- [Support](https://support.revenue.io/)
+- [Changelog](https://support.revenue.io/guided-selling/release-notes/)
+- [Blog](https://www.revenue.io/blog)
+- [Compliance](https://www.revenue.io/security)
+- [Terms of service](https://www.revenue.io/msa)
+- [Privacy policy](https://www.revenue.io/privacy-policy)
+- [GitHub](https://github.com/ringdna)
+- [Status](https://status.revenue.io/)
+
+## API Evangelist rating
+
+**Kin Score 34.3** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 78.9 |
+
+**Agent readiness 32.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 39.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/revenue-io/](https://apis.io/providers/revenue-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Revenue.io: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/revenue-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
